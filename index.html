@@ -1,38 +1,82 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Prince Albrien Malayo - Portfolio</title>
+    <title>Prince Albrien Malayo | Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        * {
             margin: 0;
-            background-color: #f4f6f8;
-            color: #333;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
         }
+
+        body {
+            background: #0f172a;
+            color: #f1f5f9;
+            line-height: 1.6;
+        }
+
         header {
-            background-color: #0d6efd;
-            color: white;
             text-align: center;
-            padding: 30px 10px;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #2563eb, #1e3a8a);
         }
+
+        header h1 {
+            font-size: 36px;
+        }
+
+        header p {
+            margin-top: 10px;
+            font-size: 18px;
+            color: #cbd5e1;
+        }
+
         section {
-            padding: 20px;
-            margin: 15px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 40px 20px;
+            max-width: 900px;
+            margin: auto;
         }
+
         h2 {
-            color: #0d6efd;
+            margin-bottom: 15px;
+            color: #38bdf8;
+            border-bottom: 2px solid #38bdf8;
+            display: inline-block;
+            padding-bottom: 5px;
         }
+
+        .card {
+            background: #1e293b;
+            padding: 20px;
+            margin-top: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
         ul {
-            line-height: 1.8;
+            margin-top: 10px;
+            padding-left: 20px;
         }
+
+        .projects a {
+            color: #38bdf8;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .projects a:hover {
+            text-decoration: underline;
+        }
+
         footer {
             text-align: center;
-            padding: 15px;
+            padding: 20px;
+            background: #1e293b;
+            margin-top: 40px;
             font-size: 14px;
-            color: gray;
+            color: #94a3b8;
         }
     </style>
 </head>
@@ -40,40 +84,57 @@
 
 <header>
     <h1>Prince Albrien Malayo</h1>
-    <p>Student | Future Developer | Tech Enthusiast</p>
+    <p>Aspiring Developer | Student | Tech Enthusiast</p>
 </header>
 
 <section>
-    <h2>About Me</h2>
-    <p>Hello! I am a student learning programming, databases, and web development. I enjoy building useful systems and improving my coding skills.</p>
+    <h2>👨‍💻 About Me</h2>
+    <div class="card">
+        <p>I am a passionate student learning programming, databases, and web development. I enjoy building systems that solve real-world problems and continuously improving my coding skills.</p>
+    </div>
 </section>
 
 <section>
-    <h2>Skills</h2>
-    <ul>
-        <li>HTML & CSS</li>
-        <li>Java Programming</li>
-        <li>MySQL Database</li>
-        <li>Basic Python</li>
-    </ul>
+    <h2>🛠 Skills</h2>
+    <div class="card">
+        <ul>
+            <li>HTML & CSS</li>
+            <li>Java Programming</li>
+            <li>MySQL Database</li>
+            <li>Basic Python</li>
+        </ul>
+    </div>
+</section>
+
+<section class="projects">
+    <h2>🚀 Projects</h2>
+
+    <div class="card">
+        <h3>Student Information System</h3>
+        <p>A Java and MySQL based system for managing student records.</p>
+    </div>
+
+    <div class="card">
+        <h3>Simple Website Project</h3>
+        <p>A responsive website built using HTML and CSS.</p>
+    </div>
+
+    <div class="card">
+        <h3>Database Management System</h3>
+        <p>SQL-based database project for storing and organizing data.</p>
+    </div>
 </section>
 
 <section>
-    <h2>Projects</h2>
-    <ul>
-        <li>Student Information System</li>
-        <li>Simple Website Project</li>
-        <li>Database Management System</li>
-    </ul>
-</section>
-
-<section>
-    <h2>Contact</h2>
-    <p>Email: your@email.com</p>
+    <h2>📫 Contact</h2>
+    <div class="card">
+        <p>Email: your@email.com</p>
+        <p>GitHub: github.com/princefaraway18</p>
+    </div>
 </section>
 
 <footer>
-    © 2026 Prince Albrien Malayo | GitHub Portfolio
+    © 2026 Prince Albrien Malayo | Portfolio Website
 </footer>
 
 </body>
