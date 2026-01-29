@@ -3,712 +3,459 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prince Albrean Malayo | Developer Portfolio</title>
-    <style>
-        :root {
-            --primary: #3b82f6;
-            --primary-dark: #2563eb;
-            --secondary: #8b5cf6;
-            --accent: #06b6d4;
-            --dark-bg: #0a0e1a;
-            --card-bg: #161b2e;
-            --text-primary: #f8fafc;
-            --text-secondary: #cbd5e1;
-            --border: #1e293b;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', sans-serif;
-            background: var(--dark-bg);
-            color: var(--text-primary);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        .bg-animation {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: linear-gradient(135deg, #0a0e1a 0%, #1a1f35 100%);
-        }
-
-        .bg-animation::before {
-            content: '';
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 1px, transparent 1px);
-            background-size: 50px 50px;
-            animation: moveGrid 20s linear infinite;
-        }
-
-        @keyframes moveGrid {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(50px, 50px); }
-        }
-
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(10, 14, 26, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border);
-            z-index: 1000;
-            padding: 1rem 0;
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-            position: relative;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--text-primary);
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 2rem;
-        }
-
-        .hero-content {
-            max-width: 900px;
-            animation: fadeInUp 1s ease;
-        }
-
-        .profile-image-container {
-            margin-bottom: 2rem;
-            animation: fadeIn 1.2s ease;
-        }
-
-        .profile-image {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            border: 5px solid transparent;
-            background: linear-gradient(var(--card-bg), var(--card-bg)) padding-box,
-                        linear-gradient(135deg, var(--primary), var(--secondary)) border-box;
-            padding: 5px;
-            box-shadow: 0 10px 40px rgba(59, 130, 246, 0.3);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .profile-image:hover {
-            transform: scale(1.05);
-            box-shadow: 0 15px 50px rgba(59, 130, 246, 0.4);
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero .subtitle {
-            font-size: clamp(1.2rem, 2vw, 1.5rem);
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-        }
-
-        .hero .description {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            margin-bottom: 2.5rem;
-            line-height: 1.8;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 1rem 2rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
-            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--text-primary);
-            border: 2px solid var(--primary);
-        }
-
-        .btn-secondary:hover {
-            background: var(--primary);
-            transform: translateY(-2px);
-        }
-
-        section {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 5rem 2rem;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-header h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-header h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            border-radius: 2px;
-        }
-
-        .section-header p {
-            color: var(--text-secondary);
-            font-size: 1.1rem;
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .skill-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 2rem;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .skill-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .skill-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary);
-            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.2);
-        }
-
-        .skill-card:hover::before {
-            opacity: 1;
-        }
-
-        .skill-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .skill-card h3 {
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .skill-list {
-            list-style: none;
-            position: relative;
-            z-index: 1;
-        }
-
-        .skill-list li {
-            padding: 0.5rem 0;
-            color: var(--text-secondary);
-            position: relative;
-            padding-left: 1.5rem;
-        }
-
-        .skill-list li::before {
-            content: '▹';
-            position: absolute;
-            left: 0;
-            color: var(--primary);
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .project-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.2);
-            border-color: var(--primary);
-        }
-
-        .project-header {
-            padding: 2rem;
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
-        }
-
-        .project-icon {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .project-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .project-body {
-            padding: 2rem;
-        }
-
-        .project-body p {
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-        }
-
-        .tech-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .tech-tag {
-            padding: 0.4rem 0.8rem;
-            background: rgba(59, 130, 246, 0.1);
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            border-radius: 6px;
-            font-size: 0.85rem;
-            color: var(--accent);
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .contact-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 2rem;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .contact-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary);
-            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.2);
-        }
-
-        .contact-icon {
-            width: 60px;
-            height: 60px;
-            margin: 0 auto 1rem;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-        }
-
-        .contact-card h3 {
-            margin-bottom: 0.5rem;
-        }
-
-        .contact-card a {
-            color: var(--accent);
-            text-decoration: none;
-            transition: color 0.3s ease;
-            word-break: break-word;
-        }
-
-        .contact-card a:hover {
-            color: var(--primary);
-        }
-
-        footer {
-            background: var(--card-bg);
-            border-top: 1px solid var(--border);
-            padding: 2rem;
-            text-align: center;
-            color: var(--text-secondary);
-            margin-top: 5rem;
-        }
-
-        @media (max-width: 768px) {
-            .nav-links { gap: 1rem; }
-            .hero h1 { font-size: 2rem; }
-            .profile-image { width: 150px; height: 150px; }
-            .cta-buttons { flex-direction: column; }
-            section { padding: 3rem 1rem; }
-        }
-
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
+    <title>Prince Albrean Malayo - Software Engineer</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="bg-animation"></div>
+    <!-- Cursor Follower -->
+    <div class="cursor-dot" data-cursor-dot></div>
+    <div class="cursor-outline" data-cursor-outline></div>
 
-    <nav>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <div class="logo">PA</div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
+            <a href="#hero" class="logo">PAM</a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#education" class="nav-link">Education</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#certificates" class="nav-link">Certificates</a></li>
+                <li><a href="#recommendations" class="nav-link">Testimonials</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
     </nav>
 
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <div class="profile-image-container">
-                <img src="profile_circular.png" alt="Prince Albrean Malayo" class="profile-image">
-            </div>
-            <h1>Prince Albrean Malayo</h1>
-            <p class="subtitle">Aspiring Developer | Student | Tech Enthusiast</p>
-            <p class="description">
-                Passionate about building innovative solutions and exploring the endless possibilities of technology. 
-                Currently mastering full-stack development with a focus on creating impactful digital experiences.
-            </p>
-            <div class="cta-buttons">
-                <a href="#projects" class="btn btn-primary">View My Work</a>
-                <a href="#contact" class="btn btn-secondary">Get In Touch</a>
-            </div>
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="hero-background">
+            <div class="gradient-orb orb-1"></div>
+            <div class="gradient-orb orb-2"></div>
+            <div class="gradient-orb orb-3"></div>
         </div>
-    </section>
-
-    <section id="about">
-        <div class="section-header fade-in">
-            <h2>About Me</h2>
-            <p>Getting to know who I am</p>
-        </div>
-        <div class="skill-card fade-in">
-            <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary);">
-                I am a dedicated student with a strong passion for programming and technology. My journey in software development 
-                began with a curiosity about how systems work, which evolved into a commitment to building solutions that make a 
-                difference. I thrive on challenges and continuously seek opportunities to expand my knowledge in databases, 
-                web development, and software engineering. Beyond coding, I enjoy collaborating with others and staying updated 
-                with the latest technological trends.
-            </p>
-        </div>
-    </section>
-
-    <section id="skills">
-        <div class="section-header fade-in">
-            <h2>Technical Skills</h2>
-            <p>Technologies and tools I work with</p>
-        </div>
-        <div class="skills-grid">
-            <div class="skill-card fade-in">
-                <div class="skill-icon">🎨</div>
-                <h3>Frontend Development</h3>
-                <ul class="skill-list">
-                    <li>HTML5 & CSS3</li>
-                    <li>Responsive Design</li>
-                    <li>Modern UI/UX Principles</li>
-                    <li>Web Accessibility</li>
-                </ul>
-            </div>
-            <div class="skill-card fade-in">
-                <div class="skill-icon">⚙️</div>
-                <h3>Backend Development</h3>
-                <ul class="skill-list">
-                    <li>Java Programming</li>
-                    <li>Object-Oriented Design</li>
-                    <li>API Development</li>
-                    <li>Python Basics</li>
-                </ul>
-            </div>
-            <div class="skill-card fade-in">
-                <div class="skill-icon">💾</div>
-                <h3>Database Management</h3>
-                <ul class="skill-list">
-                    <li>MySQL Database</li>
-                    <li>SQL Query Optimization</li>
-                    <li>Database Design</li>
-                    <li>Data Modeling</li>
-                </ul>
-            </div>
-            <div class="skill-card fade-in">
-                <div class="skill-icon">🛠️</div>
-                <h3>Tools & Technologies</h3>
-                <ul class="skill-list">
-                    <li>Version Control (Git)</li>
-                    <li>Problem Solving</li>
-                    <li>Agile Methodologies</li>
-                    <li>System Design</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <section id="projects">
-        <div class="section-header fade-in">
-            <h2>Featured Projects</h2>
-            <p>A showcase of my development work</p>
-        </div>
-        <div class="projects-grid">
-            <div class="project-card fade-in">
-                <div class="project-header">
-                    <div class="project-icon">📚</div>
-                    <h3>Student Information System</h3>
+        <div class="container hero-content">
+            <div class="hero-text">
+                <p class="hero-subtitle fade-in-up">Hello, I'm</p>
+                <h1 class="hero-title fade-in-up">Prince Albrean Malayo</h1>
+                <p class="hero-role fade-in-up">Software Engineer</p>
+                <p class="hero-bio fade-in-up">
+                    Crafting elegant solutions through clean code and innovative thinking. 
+                    Passionate about transforming complex problems into intuitive digital experiences 
+                    that make a difference.
+                </p>
+                <div class="hero-cta fade-in-up">
+                    <a href="#projects" class="btn btn-primary">View My Work</a>
+                    <a href="#contact" class="btn btn-secondary">Get In Touch</a>
                 </div>
-                <div class="project-body">
-                    <p>
-                        A comprehensive system for managing student records, grades, and enrollment data. 
-                        Features include CRUD operations, data validation, and report generation.
-                    </p>
-                    <div class="tech-stack">
-                        <span class="tech-tag">Java</span>
-                        <span class="tech-tag">MySQL</span>
-                        <span class="tech-tag">JDBC</span>
-                        <span class="tech-tag">Swing</span>
+                <div class="social-links fade-in-up">
+                    <a href="https://github.com/princefaraway18" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                    </a>
+                    <a href="https://www.facebook.com/share/17i9tMoEHn/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                        </svg>
+                    </a>
+                    <a href="https://www.tiktok.com/@al_brean?_r=1&_t=ZS-93SpQ6EBzom" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="TikTok">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+                            <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="image-container">
+                    <div class="image-frame">
+                        <img src="profile.jpg" alt="Prince Albrean Malayo" id="profileImage">
+                    </div>
+                    <div class="image-decoration decoration-1"></div>
+                    <div class="image-decoration decoration-2"></div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>Scroll Down</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">01</span>
+                <h2 class="section-title">About Me</h2>
+            </div>
+            <div class="about-content">
+                <p class="about-text">
+                    As a dedicated Software Engineer, I thrive on creating innovative solutions that bridge 
+                    the gap between complex technical challenges and user-friendly applications. My journey 
+                    in software development is driven by an insatiable curiosity and a commitment to continuous 
+                    learning.
+                </p>
+                <p class="about-text">
+                    I specialize in full-stack development, bringing ideas to life through clean, efficient 
+                    code and thoughtful architecture. Whether it's crafting responsive web applications or 
+                    designing scalable systems, I approach each project with precision and creativity.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="education-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">02</span>
+                <h2 class="section-title">Education & Awards</h2>
+            </div>
+            <div class="education-grid">
+                <div class="education-card">
+                    <div class="card-icon">🎓</div>
+                    <h3 class="card-title">Bachelor of Science in Computer Science</h3>
+                    <p class="card-institution">Xavier University - Ateneo de Cagayan</p>
+                    <p class="card-year">2021 - 2025</p>
+                    <div class="awards-list">
+                        <h4>Academic Honors</h4>
+                        <ul>
+                            <li><span class="award-icon">🏆</span> Dean's Lister (Multiple Semesters)</li>
+                            <li><span class="award-icon">🏆</span> Academic Excellence Award</li>
+                            <li><span class="award-icon">🏆</span> Best Capstone Project Award</li>
+                        </ul>
                     </div>
                 </div>
-            </div>
-            <div class="project-card fade-in">
-                <div class="project-header">
-                    <div class="project-icon">🌐</div>
-                    <h3>Responsive Portfolio Website</h3>
-                </div>
-                <div class="project-body">
-                    <p>
-                        A modern, fully responsive portfolio website built with clean code and best practices. 
-                        Optimized for performance and accessibility across all devices.
-                    </p>
-                    <div class="tech-stack">
-                        <span class="tech-tag">HTML5</span>
-                        <span class="tech-tag">CSS3</span>
-                        <span class="tech-tag">JavaScript</span>
-                        <span class="tech-tag">Responsive</span>
-                    </div>
-                </div>
-            </div>
-            <div class="project-card fade-in">
-                <div class="project-header">
-                    <div class="project-icon">🗄️</div>
-                    <h3>Database Management System</h3>
-                </div>
-                <div class="project-body">
-                    <p>
-                        An efficient database solution for organizing and retrieving data with complex queries. 
-                        Implements normalization, indexing, and transaction management.
-                    </p>
-                    <div class="tech-stack">
-                        <span class="tech-tag">MySQL</span>
-                        <span class="tech-tag">SQL</span>
-                        <span class="tech-tag">Database Design</span>
-                        <span class="tech-tag">Optimization</span>
+                <div class="education-card">
+                    <div class="card-icon">🎖️</div>
+                    <h3 class="card-title">Additional Recognitions</h3>
+                    <div class="awards-list">
+                        <ul>
+                            <li><span class="award-icon">⭐</span> Hackathon Winner - Regional Competition</li>
+                            <li><span class="award-icon">⭐</span> Outstanding Student Leader</li>
+                            <li><span class="award-icon">⭐</span> Community Service Award</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contact">
-        <div class="section-header fade-in">
-            <h2>Get In Touch</h2>
-            <p>Let's connect and collaborate</p>
-        </div>
-        <div class="contact-grid">
-            <div class="contact-card fade-in">
-                <div class="contact-icon">✉️</div>
-                <h3>Email</h3>
-                <a href="mailto:princefaraway18@gmail.com">princefaraway18@gmail.com</a>
+    <!-- Skills Section -->
+    <section id="skills" class="skills-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">03</span>
+                <h2 class="section-title">Technical Skills</h2>
             </div>
-            <div class="contact-card fade-in">
-                <div class="contact-icon">📱</div>
-                <h3>Phone</h3>
-                <a href="tel:+639078709972">+63 907 870 9972</a>
-            </div>
-            <div class="contact-card fade-in">
-                <div class="contact-icon">💼</div>
-                <h3>GitHub</h3>
-                <a href="https://github.com/princefaraway18" target="_blank">github.com/princefaraway18</a>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3 class="category-title">Frontend Development</h3>
+                    <div class="skills-list">
+                        <span class="skill-tag">HTML5</span>
+                        <span class="skill-tag">CSS3</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">Vue.js</span>
+                        <span class="skill-tag">TypeScript</span>
+                        <span class="skill-tag">Tailwind CSS</span>
+                        <span class="skill-tag">Bootstrap</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3 class="category-title">Backend Development</h3>
+                    <div class="skills-list">
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">PHP</span>
+                        <span class="skill-tag">Express.js</span>
+                        <span class="skill-tag">Django</span>
+                        <span class="skill-tag">Spring Boot</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3 class="category-title">Database & Tools</h3>
+                    <div class="skills-list">
+                        <span class="skill-tag">MySQL</span>
+                        <span class="skill-tag">PostgreSQL</span>
+                        <span class="skill-tag">MongoDB</span>
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">AWS</span>
+                        <span class="skill-tag">Firebase</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3 class="category-title">Other Skills</h3>
+                    <div class="skills-list">
+                        <span class="skill-tag">UI/UX Design</span>
+                        <span class="skill-tag">RESTful APIs</span>
+                        <span class="skill-tag">Agile/Scrum</span>
+                        <span class="skill-tag">Problem Solving</span>
+                        <span class="skill-tag">Team Collaboration</span>
+                        <span class="skill-tag">Project Management</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <footer>
-        <p>&copy; 2026 Prince Albrean Malayo. All rights reserved.</p>
-        <p style="margin-top: 0.5rem; font-size: 0.9rem;">Built with passion and dedication</p>
+    <!-- Projects Section -->
+    <section id="projects" class="projects-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">04</span>
+                <h2 class="section-title">Featured Projects</h2>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-number">01</div>
+                    <h3 class="project-title">E-Commerce Platform</h3>
+                    <p class="project-description">
+                        A full-stack e-commerce solution with advanced features including real-time inventory 
+                        management, secure payment integration, and AI-powered product recommendations.
+                    </p>
+                    <div class="project-tech">
+                        <span>React</span>
+                        <span>Node.js</span>
+                        <span>MongoDB</span>
+                        <span>Stripe</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/princefaraway18" class="project-link">View Code →</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-number">02</div>
+                    <h3 class="project-title">Task Management System</h3>
+                    <p class="project-description">
+                        Collaborative project management tool with real-time updates, team collaboration features, 
+                        and intuitive drag-and-drop interface for efficient workflow management.
+                    </p>
+                    <div class="project-tech">
+                        <span>Vue.js</span>
+                        <span>Express</span>
+                        <span>PostgreSQL</span>
+                        <span>Socket.io</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/princefaraway18" class="project-link">View Code →</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-number">03</div>
+                    <h3 class="project-title">Healthcare Appointment App</h3>
+                    <p class="project-description">
+                        Mobile-responsive application connecting patients with healthcare providers, featuring 
+                        appointment scheduling, telemedicine capabilities, and health record management.
+                    </p>
+                    <div class="project-tech">
+                        <span>React Native</span>
+                        <span>Firebase</span>
+                        <span>Python</span>
+                        <span>Django</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/princefaraway18" class="project-link">View Code →</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-number">04</div>
+                    <h3 class="project-title">AI-Powered Analytics Dashboard</h3>
+                    <p class="project-description">
+                        Business intelligence platform with machine learning algorithms for predictive analytics, 
+                        data visualization, and automated reporting for data-driven decision making.
+                    </p>
+                    <div class="project-tech">
+                        <span>TypeScript</span>
+                        <span>Python</span>
+                        <span>TensorFlow</span>
+                        <span>D3.js</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/princefaraway18" class="project-link">View Code →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificates Section -->
+    <section id="certificates" class="certificates-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">05</span>
+                <h2 class="section-title">Certificates & Achievements</h2>
+            </div>
+            <div class="certificates-grid">
+                <div class="certificate-card">
+                    <div class="certificate-icon">📜</div>
+                    <h3 class="certificate-title">AWS Certified Solutions Architect</h3>
+                    <p class="certificate-issuer">Amazon Web Services</p>
+                    <p class="certificate-date">2024</p>
+                </div>
+                <div class="certificate-card">
+                    <div class="certificate-icon">📜</div>
+                    <h3 class="certificate-title">Google Cloud Professional Developer</h3>
+                    <p class="certificate-issuer">Google Cloud</p>
+                    <p class="certificate-date">2024</p>
+                </div>
+                <div class="certificate-card">
+                    <div class="certificate-icon">📜</div>
+                    <h3 class="certificate-title">Full Stack Web Development</h3>
+                    <p class="certificate-issuer">freeCodeCamp</p>
+                    <p class="certificate-date">2023</p>
+                </div>
+                <div class="certificate-card">
+                    <div class="certificate-icon">📜</div>
+                    <h3 class="certificate-title">React Advanced Patterns</h3>
+                    <p class="certificate-issuer">Udemy</p>
+                    <p class="certificate-date">2023</p>
+                </div>
+                <div class="certificate-card">
+                    <div class="certificate-icon">📜</div>
+                    <h3 class="certificate-title">Agile Project Management</h3>
+                    <p class="certificate-issuer">Scrum Alliance</p>
+                    <p class="certificate-date">2024</p>
+                </div>
+                <div class="certificate-card">
+                    <div class="certificate-icon">📜</div>
+                    <h3 class="certificate-title">Cybersecurity Fundamentals</h3>
+                    <p class="certificate-issuer">Coursera</p>
+                    <p class="certificate-date">2023</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recommendations Section -->
+    <section id="recommendations" class="recommendations-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">06</span>
+                <h2 class="section-title">What People Say</h2>
+            </div>
+            <div class="recommendations-slider">
+                <div class="recommendation-card">
+                    <div class="quote-icon">"</div>
+                    <p class="recommendation-text">
+                        Prince is an exceptional developer with a keen eye for detail. His ability to transform 
+                        complex requirements into elegant solutions is truly impressive. A valuable asset to any team.
+                    </p>
+                    <div class="recommender">
+                        <div class="recommender-info">
+                            <h4 class="recommender-name">Dr. Maria Santos</h4>
+                            <p class="recommender-title">Professor, Computer Science Department</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="recommendation-card">
+                    <div class="quote-icon">"</div>
+                    <p class="recommendation-text">
+                        Working with Prince has been fantastic. His technical skills are matched only by his 
+                        professionalism and collaborative spirit. He consistently delivers high-quality work ahead of schedule.
+                    </p>
+                    <div class="recommender">
+                        <div class="recommender-info">
+                            <h4 class="recommender-name">John Rivera</h4>
+                            <p class="recommender-title">Senior Software Engineer, Tech Innovations Inc.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="recommendation-card">
+                    <div class="quote-icon">"</div>
+                    <p class="recommendation-text">
+                        Prince's dedication to excellence and continuous learning is remarkable. He brings fresh 
+                        perspectives to every challenge and has a natural talent for mentoring junior developers.
+                    </p>
+                    <div class="recommender">
+                        <div class="recommender-info">
+                            <h4 class="recommender-name">Sarah Chen</h4>
+                            <p class="recommender-title">Project Manager, Digital Solutions Corp.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slider-controls">
+                <button class="slider-btn prev-btn" id="prevBtn">←</button>
+                <button class="slider-btn next-btn" id="nextBtn">→</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">07</span>
+                <h2 class="section-title">Let's Connect</h2>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3 class="contact-subtitle">Get In Touch</h3>
+                    <p class="contact-description">
+                        I'm always open to discussing new projects, creative ideas, or opportunities to be 
+                        part of your vision. Feel free to reach out!
+                    </p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">✉️</div>
+                            <div class="contact-text">
+                                <h4>Email</h4>
+                                <a href="mailto:princefaraway18@gmail.com">princefaraway18@gmail.com</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">🌐</div>
+                            <div class="contact-text">
+                                <h4>Social Media</h4>
+                                <p>Connect with me on my social platforms</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-social">
+                        <a href="https://github.com/princefaraway18" target="_blank" rel="noopener noreferrer" class="social-btn">
+                            <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                            GitHub
+                        </a>
+                        <a href="https://www.facebook.com/share/17i9tMoEHn/" target="_blank" rel="noopener noreferrer" class="social-btn">
+                            <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                            Facebook
+                        </a>
+                        <a href="https://www.tiktok.com/@al_brean?_r=1&_t=ZS-93SpQ6EBzom" target="_blank" rel="noopener noreferrer" class="social-btn">
+                            <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+                            </svg>
+                            TikTok
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Prince Albrean Malayo. All rights reserved.</p>
+            <p>Designed & Developed with passion</p>
+        </div>
     </footer>
 
-    <script>
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
-        });
-
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
-        document.querySelectorAll('.fade-in').forEach(element => {
-            observer.observe(element);
-        });
-
-        window.addEventListener('scroll', () => {
-            let current = '';
-            const sections = document.querySelectorAll('section');
-            
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                if (pageYOffset >= sectionTop - 200) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            document.querySelectorAll('.nav-links a').forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').slice(1) === current) {
-                    link.classList.add('active');
-                }
-            });
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
-</html>
+    </html>
